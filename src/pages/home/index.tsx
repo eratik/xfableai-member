@@ -1,6 +1,7 @@
+import { useNavigate } from "react-router-dom";
 // src/pages/home/index.tsx
 // import React from "react";
-import { Menu, Sparkles, MessageSquare, Image, Mic } from "lucide-react";
+import { Sparkles, MessageSquare, Image, Mic } from "lucide-react";
 import {
   GradientText,
   GradientBackground,
@@ -8,22 +9,11 @@ import {
   ThemedButton,
 } from "@/components/ui/themed";
 
-const Header = () => (
-  <header className="fixed w-full top-0 z-50 backdrop-blur-sm border-b border-secondary/20">
-    <div className="container px-4 h-16 flex items-center justify-between">
-      <GradientText className="font-bold text-xl">xfable.ai</GradientText>
-      <ThemedButton variant="outline" className="p-2">
-        <Menu className="h-6 w-6" />
-      </ThemedButton>
-    </div>
-  </header>
-);
-
 const HeroSection = () => (
   <GradientBackground animate className="min-h-screen pt-16">
     <div className="container relative px-4 pt-20 pb-12 flex flex-col items-center text-center">
       {/* Avatar Image */}
-      <div className="relative mb-6 w-48 h-48">
+      <div className="relative mb-6 w-64 h-64">
         <img
           src="/girl2.jpg"
           alt="Fantasy Avatar Example"
@@ -108,47 +98,52 @@ const HowItWorksSection = () => (
   </div>
 );
 
-const PricingSection = () => (
-  <div className="py-12 bg-background text-white">
-    <div className="container px-4">
-      <GradientText as="h2" className="text-3xl font-bold mb-12 text-center">
-        Start Your Journey
-      </GradientText>
-
-      <GlassCard className="mb-6">
-        <GradientText as="h3" className="text-xl font-bold mb-4">
-          Premium Access
+const PricingSection = () => {
+  const navigate = useNavigate();
+  return (
+    <div className="py-12 bg-background text-white">
+      <div className="container px-4">
+        <GradientText as="h2" className="text-3xl font-bold mb-12 text-center">
+          Start Your Journey
         </GradientText>
-        <ul className="space-y-4 mb-6">
-          {[
-            "Custom Avatar Creation",
-            "Unlimited Text Chat",
-            "Voice Interaction",
-            "Multiple Fantasy Scenarios",
-            "Priority Access to New Features",
-          ].map((feature, index) => (
-            <li key={index} className="flex items-center text-secondary">
-              <span className="mr-2 text-primary">✓</span>
-              {feature}
-            </li>
-          ))}
-        </ul>
-        <ThemedButton className="w-full">
-          Subscribe Now - $9.99/month
-        </ThemedButton>
-      </GlassCard>
 
-      <p className="text-center text-sm text-secondary">
-        Additional AI image generations available as pay-per-use
-      </p>
+        <GlassCard className="mb-6">
+          <GradientText as="h3" className="text-xl font-bold mb-4">
+            Premium Access
+          </GradientText>
+          <ul className="space-y-4 mb-6">
+            {[
+              "Custom Avatar Creation",
+              "Unlimited Text Chat",
+              "Voice Interaction",
+              "Multiple Fantasy Scenarios",
+              "Priority Access to New Features",
+            ].map((feature, index) => (
+              <li key={index} className="flex items-center text-secondary">
+                <span className="mr-2 text-primary">✓</span>
+                {feature}
+              </li>
+            ))}
+          </ul>
+          <ThemedButton
+            className="w-full"
+            onClick={() => navigate("/subscribe")}
+          >
+            Subscribe Now - $9.99/month
+          </ThemedButton>
+        </GlassCard>
+
+        <p className="text-center text-sm text-secondary">
+          Additional AI image generations available as pay-per-use
+        </p>
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export const HomePage = () => {
   return (
     <div className="min-h-screen bg-background">
-      <Header />
       <main>
         <HeroSection />
         <HowItWorksSection />
