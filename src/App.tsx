@@ -13,7 +13,7 @@ function App() {
     name: string;
     price: string;
   } | null>(null);
-  // TODO: add a loading state
+  // TODO: just changing this to see if it will build
   return (
     <Router>
       <Routes>
