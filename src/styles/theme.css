@@ -1,0 +1,45 @@
+/* src/styles/theme.css */
+:root {
+  /* Default theme */
+  --color-primary: 236 72 153; /* pink-500 */
+  --color-primary-foreground: 255 255 255;
+  --color-secondary: 6 182 212; /* cyan-500 */
+  --color-secondary-foreground: 255 255 255;
+  --color-accent: 168 85 247; /* purple-500 */
+  --color-accent-foreground: 255 255 255;
+
+  /* Effects */
+  --blur-amount: 8px;
+  --glow-strength: 20px;
+  --animation-speed: 2s;
+}
+
+/* Theme variants can be added like this */
+.theme-dark {
+  --color-primary: 236 72 153;
+  --color-secondary: 6 182 212;
+  --color-accent: 168 85 247;
+}
+
+.theme-light {
+  --color-primary: 219 39 119;
+  --color-secondary: 8 145 178;
+  --color-accent: 147 51 234;
+}
+
+/* Utility classes */
+.glow-primary {
+  box-shadow: 0 0 var(--glow-strength) rgb(var(--color-primary) / 0.5);
+}
+
+.glow-secondary {
+  box-shadow: 0 0 var(--glow-strength) rgb(var(--color-secondary) / 0.5);
+}
+
+.bg-gradient-primary {
+  background: linear-gradient(
+    to right,
+    rgb(var(--color-primary) / 0.2),
+    rgb(var(--color-secondary) / 0.2)
+  );
+}

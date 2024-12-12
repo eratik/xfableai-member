@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 13%; /* Dark gray background */
+    --foreground: 0 0% 100%;
+
+    --primary: 322 100% 50%; /* Neon pink */
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 180 100% 50%; /* Neon cyan */
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --accent: 280 100% 50%; /* Neon purple */
+    --accent-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+
+    --radius: 0.5rem;
+  }
+}
+
+/* Add some custom utility classes */
+@layer utilities {
+  .glow {
+    box-shadow: 0 0 10px rgb(var(--primary) / 0.5),
+      0 0 20px rgb(var(--secondary) / 0.3);
+  }
+
+  .text-glow {
+    text-shadow: 0 0 10px rgb(var(--primary) / 0.5),
+      0 0 20px rgb(var(--secondary) / 0.3);
+  }
+}
+
+/* Base styles */
+@layer base {
+  body {
+    @apply bg-background text-foreground;
+  }
+}
