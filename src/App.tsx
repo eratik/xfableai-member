@@ -5,6 +5,7 @@ import { HomePage } from "./pages/home";
 import SubscribePage from "./pages/subscribe";
 import PaymentPage from "./pages/payment";
 import SignInPage from "./pages/signin";
+import SignUpPage from "./pages/signup";
 import { Layout } from "./components/layouts/main";
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
         <Route element={<Layout />}>
           <Route path="/" element={<HomePage />} />
           <Route path="/signin" element={<SignInPage />} />
+          <Route path="/signup" element={<SignUpPage />} />
           <Route
             path="/subscribe"
             element={<SubscribePage setSelectedPlan={setSelectedPlan} />}

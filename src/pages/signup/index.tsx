@@ -1,37 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
 import { Lock, Mail } from "lucide-react";
 import { useAuthActions } from "@convex-dev/auth/react";
-import { useState } from "react";
 import { GradientText } from "@/components/ui/themed";
-import { useNavigate } from "react-router-dom";
 
-const SignInForm = () => {
-  const navigate = useNavigate();
+const SignUpForm = () => {
   const { signIn } = useAuthActions();
   const [loading, setLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    setError(null);
 
     try {
       const formData = new FormData();
       formData.append("email", email);
       formData.append("password", password);
-      formData.append("flow", "signIn"); // Add this line to specify the flow type
+      formData.append("flow", "signUp");
 
       await signIn("password", formData);
-      navigate("/"); // Navigate to home after successful sign in
+      setSuccess(true);
+      console.log("Sign-up successful");
     } catch (error) {
-      // Handle sign-in error with user-friendly message
-      console.error("Sign-in failed:", error);
-      setError(
-        "Invalid email or password. Please check your credentials and try again."
-      );
+      console.error("Sign-up failed:", error);
+      alert("Sign-up failed. Please try again later.");
     } finally {
       setLoading(false);
     }
@@ -48,19 +42,19 @@ const SignInForm = () => {
           {/* Header */}
           <div className="text-center mb-8">
             <h1 className="text-3xl font-bold mb-2">
-              <GradientText>Welcome Back</GradientText>
+              <GradientText>Create an Account</GradientText>
             </h1>
-            <p className="text-secondary">Continue your fantasy journey</p>
+            <p className="text-secondary">Join the fantasy journey</p>
           </div>
 
-          {/* Error message */}
-          {error && (
-            <div className="mb-6 p-4 rounded-lg bg-red-500/10 border border-red-500/20 text-red-500 text-sm">
-              {error}
+          {/* Success message */}
+          {success && (
+            <div className="text-center text-green-500 mb-4">
+              Sign-up successful! Welcome aboard.
             </div>
           )}
 
-          {/* Sign in form */}
+          {/* Sign up form */}
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-4">
               {/* Email field */}
@@ -100,16 +94,6 @@ const SignInForm = () => {
               </div>
             </div>
 
-            {/* Forgot password link */}
-            <div className="flex justify-end">
-              <button
-                type="button"
-                className="text-sm text-secondary hover:text-primary transition-colors"
-              >
-                Forgot your password?
-              </button>
-            </div>
-
             {/* Submit button */}
             <button
               type="submit"
@@ -146,21 +130,21 @@ const SignInForm = () => {
                       d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                     ></path>
                   </svg>
-                  Signing in...
+                  Signing up...
                 </>
               ) : (
-                "Sign In"
+                "Sign Up"
               )}
             </button>
 
-            {/* Sign up link */}
+            {/* Sign in link */}
             <div className="text-center text-secondary">
-              <span>Don't have an account? </span>
+              <span>Already have an account? </span>
               <button
                 type="button"
                 className="text-primary hover:text-primary/80 font-semibold transition-colors"
               >
-                Sign up
+                Sign in
               </button>
             </div>
           </form>
@@ -178,4 +162,4 @@ const SignInForm = () => {
   );
 };
 
-export default SignInForm;
+export default SignUpForm;

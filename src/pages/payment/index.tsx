@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Lock, CreditCard, ArrowLeft } from "lucide-react";
+import { GradientText } from "@/components/ui/themed";
 
 // Define the interface for the selectedPlan prop
 interface SelectedPlan {
@@ -12,22 +13,6 @@ interface PaymentFormProps {
   selectedPlan?: SelectedPlan;
   onBack: () => void;
 }
-
-interface GradientTextProps {
-  children: React.ReactNode;
-  className?: string;
-}
-
-const GradientText: React.FC<GradientTextProps> = ({
-  children,
-  className = "",
-}) => (
-  <span
-    className={`bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent ${className}`}
-  >
-    {children}
-  </span>
-);
 
 const PaymentForm: React.FC<PaymentFormProps> = ({ selectedPlan }) => {
   const navigate = useNavigate();
